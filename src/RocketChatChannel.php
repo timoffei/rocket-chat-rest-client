@@ -60,7 +60,7 @@ class Channel extends Client {
 	* Retrieves the information about the channel.
 	*/
 	public function info() {
-	    if($this->id != null) {
+	    if($this->id !== null) {
             $response = Request::get( $this->api . 'channels.info?roomId=' . $this->id )->send();
         }
         else {
