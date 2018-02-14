@@ -7,7 +7,7 @@ use RocketChat\Client;
 
 class Channel extends Client {
 
-	public $id;
+	public $id = null;
 	public $name;
 	public $members = array();
 
@@ -60,7 +60,7 @@ class Channel extends Client {
 	* Retrieves the information about the channel.
 	*/
 	public function info() {
-	    if($this->id > 0) {
+	    if($this->id != null) {
             $response = Request::get( $this->api . 'channels.info?roomId=' . $this->id )->send();
         }
         else {
@@ -103,7 +103,7 @@ class Channel extends Client {
 	*/
 	public function deleteMessage($id) {
 		$response = Request::post( $this->api . 'chat.delete' )
-			->body( array('msgId' => $id) )
+			->body( array('roomId' => $this->id, 'msgId' => $id) )
 			->send();
 
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
