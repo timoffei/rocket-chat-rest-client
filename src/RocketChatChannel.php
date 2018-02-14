@@ -60,7 +60,12 @@ class Channel extends Client {
 	* Retrieves the information about the channel.
 	*/
 	public function info() {
-		$response = Request::get( $this->api . 'channels.info?roomId=' . $this->id )->send();
+	    if($this->id > 0) {
+            $response = Request::get( $this->api . 'channels.info?roomId=' . $this->id )->send();
+        }
+        else {
+            $response = Request::get( $this->api . 'channels.info?roomName=' . $this->name )->send();
+        }
 
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			$this->id = $response->body->channel->_id;
@@ -98,7 +103,7 @@ class Channel extends Client {
 	*/
 	public function deleteMessage($id) {
 		$response = Request::post( $this->api . 'chat.delete' )
-			->body( array('roomId' => $this->id, 'msgId' => $id) )
+			->body( array('msgId' => $id) )
 			->send();
 
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
