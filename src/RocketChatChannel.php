@@ -85,10 +85,26 @@ class Channel extends Client {
 			->send();
 
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
-			return true;
+			return $response->body;
 		} else {
 			if( isset($response->body->error) )	echo( $response->body->error . "\n" );
 			else if( isset($response->body->message) )	echo( $response->body->message . "\n" );
+			return false;
+		}
+	}
+	
+	/**
+	* Delete a message in this channel, as the logged-in user
+	*/
+	public function deleteMessage($id) {
+		$response = Request::post( $this->api . 'chat.delete' )
+			->body( array('msgId' => $id) )
+			->send();
+
+		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
+			return $response->body;
+		} else {
+			if( isset($response->body->error) )	echo( $response->body->error . "\n" );
 			return false;
 		}
 	}
