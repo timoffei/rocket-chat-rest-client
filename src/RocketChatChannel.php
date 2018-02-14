@@ -98,7 +98,7 @@ class Channel extends Client {
 	*/
 	public function deleteMessage($id) {
 		$response = Request::post( $this->api . 'chat.delete' )
-			->body( array('msgId' => $id) )
+			->body( array('roomId' => $this->id, 'msgId' => $id) )
 			->send();
 
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
