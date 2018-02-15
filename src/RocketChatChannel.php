@@ -64,9 +64,9 @@ class Channel extends Client {
             $response = Request::get( $this->api . 'channels.info?roomId=' . $this->id )->send();
         }
         else {
-            $response = Request::get( $this->api . 'channels.info?roomName=' . $this->name )->send();
+            $response = Request::get( $this->api . 'channels.info?roomName=' . urlencode($this->name) )->send();
         }
-
+	
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			$this->id = $response->body->channel->_id;
 			return $response->body;

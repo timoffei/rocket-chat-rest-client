@@ -60,7 +60,12 @@ class Group extends Client {
 	* Retrieves the information about the private group, only if you’re part of the group.
 	*/
 	public function info() {
-		$response = Request::get( $this->api . 'groups.info?roomId=' . $this->id )->send();
+		if($this->id !== null) {
+            $response = Request::get( $this->api . 'groups.info?roomId=' . $this->id )->send();
+        }
+        else {
+            $response = Request::get( $this->api . 'groups.info?roomName=' . urlencode($this->name) )->send();
+        }
 
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			$this->id = $response->body->group->_id;
