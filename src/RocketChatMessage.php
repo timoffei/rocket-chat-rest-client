@@ -19,8 +19,7 @@ class Message extends Client {
      * Post a message in this channel, as the logged-in user
      */
     public function info() {
-        $response = Request::post( $this->api . 'chat.getMessage' )
-            ->body( array('msgId' => $this->id) )
+        $response = Request::get( $this->api . 'chat.getMessage?msgId=' . urlencode($this->id) )
             ->send();
 
         if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
