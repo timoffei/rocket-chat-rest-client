@@ -19,11 +19,6 @@ class Message extends Client {
      * Post a message in this channel, as the logged-in user
      */
     public function info() {
-        $message = is_string($text) ? array( 'text' => $text ) : $text;
-        if( !isset($message['attachments']) ){
-            $message['attachments'] = array();
-        }
-
         $response = Request::post( $this->api . 'chat.getMessage' )
             ->body( array('msgId' => $this->id) )
             ->send();
