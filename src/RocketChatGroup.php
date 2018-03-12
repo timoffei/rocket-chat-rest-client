@@ -51,7 +51,7 @@ class Group extends Client {
 			$this->id = $response->body->group->_id;
 			return $response->body->group;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -71,7 +71,7 @@ class Group extends Client {
 			$this->id = $response->body->group->_id;
 			return $response->body;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -92,8 +92,8 @@ class Group extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return true;
 		} else {
-			if( isset($response->body->error) )	echo( $response->body->error . "\n" );
-			else if( isset($response->body->message) )	echo( $response->body->message . "\n" );
+			if( isset($response->body->error) )	throw new Exception( $response->body->error );
+			else if( isset($response->body->message) ) throw new Exception( $response->body->message );
 			return false;
 		}
 	}
@@ -109,7 +109,7 @@ class Group extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return true;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -125,7 +125,7 @@ class Group extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return true;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -144,7 +144,7 @@ class Group extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return true;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -163,7 +163,7 @@ class Group extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return true;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -182,7 +182,7 @@ class Group extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return true;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -201,7 +201,7 @@ class Group extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return true;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}

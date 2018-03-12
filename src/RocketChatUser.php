@@ -43,7 +43,7 @@ class User extends Client {
 			$this->id = $response->body->data->userId;
 			return true;
 		} else {
-			echo( $response->body->message . "\n" );
+			throw new Exception( $response->body->message );
 			return false;
 		}
 	}
@@ -60,7 +60,7 @@ class User extends Client {
 			$this->email = $response->body->user->emails[0]->address;
 			return $response->body;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -82,7 +82,7 @@ class User extends Client {
 			$this->id = $response->body->user->_id;
 			return $response->body->user;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -103,7 +103,7 @@ class User extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return true;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}

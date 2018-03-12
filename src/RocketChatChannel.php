@@ -51,7 +51,7 @@ class Channel extends Client {
 			$this->id = $response->body->channel->_id;
 			return $response->body->channel;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -71,7 +71,7 @@ class Channel extends Client {
 			$this->id = $response->body->channel->_id;
 			return $response->body;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -92,8 +92,8 @@ class Channel extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return $response->body;
 		} else {
-			if( isset($response->body->error) )	echo( $response->body->error . "\n" );
-			else if( isset($response->body->message) )	echo( $response->body->message . "\n" );
+			if( isset($response->body->error) )	throw new Exception( $response->body->error );
+			else if( isset($response->body->message) ) throw new Exception( $response->body->message );
 			return false;
 		}
 	}
@@ -109,7 +109,7 @@ class Channel extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return $response->body;
 		} else {
-			if( isset($response->body->error) )	echo( $response->body->error . "\n" );
+			if( isset($response->body->error) )	throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -125,7 +125,7 @@ class Channel extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return true;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -141,7 +141,7 @@ class Channel extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return true;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -160,7 +160,7 @@ class Channel extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return true;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -179,7 +179,7 @@ class Channel extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return true;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -198,7 +198,7 @@ class Channel extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return true;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -217,7 +217,7 @@ class Channel extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return true;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 			return false;
 		}
 	}

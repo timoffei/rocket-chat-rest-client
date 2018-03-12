@@ -45,8 +45,8 @@ class Chat extends Client {
         if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
             return $response->body;
         } else {
-            if( isset($response->body->error) )	echo( $response->body->error . "\n" );
-            else if( isset($response->body->message) )	echo( $response->body->message . "\n" );
+            if( isset($response->body->error) )	throw new Exception( $response->body->error );
+            else if( isset($response->body->message) ) throw new Exception( $response->body->message );
             return false;
         }
     }

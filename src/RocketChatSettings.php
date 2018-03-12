@@ -30,7 +30,7 @@ class Settings extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return $response->body->value;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 		}
 	}
 
@@ -45,7 +45,7 @@ class Settings extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return true;
 		} else {
-			echo( $response->body->error . "\n" );
+			throw new Exception( $response->body->error );
 		}
 	}
 
@@ -59,7 +59,7 @@ class Settings extends Client {
 		fclose($f);
 
 		if( $settings === null ) {
-			echo "Erreur de décodage json pour le fichier {$this->file}\n";
+			throw new Exception( "Erreur de décodage json pour le fichier {$this->file}");
 			return;
 		}
 
