@@ -92,6 +92,8 @@ class Channel extends Client {
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return $response->body;
 		} else {
+            \Log::info(json_encode($message));
+
 			if( isset($response->body->error) )	throw new \Exception( $response->body->error );
 			else if( isset($response->body->message) ) throw new \Exception( $response->body->message );
 			return false;
