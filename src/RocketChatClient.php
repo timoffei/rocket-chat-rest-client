@@ -37,7 +37,7 @@ class Client{
 				return $response->body;
 			}
 		} else {
-			throw new Exception( $response->body->message );
+			throw new \Exception( $response->body->message );
 			return false;
 		}
 	}
@@ -54,7 +54,7 @@ class Client{
 		if( $response->code == 200 && isset($response->body->success) && $response->body->success == true ) {
 			return $response->body->users;
 		} else {
-			throw new Exception( $response->body->error );
+			throw new \Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -72,7 +72,7 @@ class Client{
 			}
 			return $groups;
 		} else {
-			throw new Exception( $response->body->error );
+			throw new \Exception( $response->body->error );
 			return false;
 		}
 	}
@@ -90,7 +90,7 @@ class Client{
 			}
 			return $groups;
 		} else {
-			throw new Exception( $response->body->error );
+			throw new \Exception( $response->body->error );
 			return false;
 		}
 	}
